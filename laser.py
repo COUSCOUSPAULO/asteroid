@@ -14,18 +14,21 @@ class Laser:
         self.skin =  pygame.image.load("img/laser.png").convert()
         self.xrap = 0
         self.yrap = 0
-
+        self.rect = self.skin.get_rect(x = self.x,y = self.y)
 
     def objectif(self,xm , ym):
-        y1 = ym-self.y
-        x1 = xm-self.x
-        self.xrap = (x1*100/(sqrt((x1**2)+(y1**2))))
-        self.yrap = 100-self.xrap
+        y1 = ym-self.rect[1]
+        x1 = xm-self.rect[0]
+        univect  = sqrt(x1**2 + y1**2)
+        self.xrap = x1/univect
+        self.yrap = y1/univect
 
-    def update(self,screen):
+    def update(self):
 
 
-        self.x += (self.xrap/100) * self.vitesse
-        self.y += (self.xrap/100) * self.vitesse
+        self.rect[0] += self.xrap * self.vitesse
+        self.rect[1] += self.yrap * self.vitesse
 
+    def __del__(self,event):
+        del self
 

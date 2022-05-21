@@ -2,6 +2,8 @@ import pygame
 from pygame.locals import *
 from vaisseau import *
 from laser import *
+from asteroid import *
+from manche import *
 
 pygame.init()
 
@@ -17,7 +19,7 @@ screen.blit(fond, (0,0))
 screen.blit(vseau.skin,(vseau.x,vseau.y))
 
 event1= []
-
+score = 0
 
 
 cont = True
@@ -30,22 +32,25 @@ while cont:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 laser = vseau.tire(screen,event1)
-                screen.blit(laser.skin,(laser.x,laser.y))
+                screen.blit(laser.skin,laser.rect)
     for i in event1:
-        if i.x < 0 or i.x > 1200:
-            event1.remove(i)
-        i.update(screen)
-        screen.blit(i.skin, (i.x, i.y))
+
+        i.update()
+        screen.blit(i.skin, i.rect)
+
+    score += checkhitbox(event1)
+    randomspawn(event1)
+
 
     pressed = pygame.key.get_pressed()
-    vseau.mouvement(pressed,screen,event1)
+    vseau.mouvement(pressed,screen,event)
 
     dt = clock.tick(30)
 
     vseau.tor()
 
 
-    screen.blit(vseau.skin,(vseau.x,vseau.y))
+    screen.blit(vseau.skin,vseau.rect)
 
 
     pygame.display.flip()
