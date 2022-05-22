@@ -7,19 +7,19 @@ from manche import *
 
 pygame.init()
 
-screen = pygame.display.set_mode((1200,800))
-fond = pygame.image.load("img/Stars.png").convert()
+screen = pygame.display.set_mode((1200,800)) 
+fond = pygame.image.load("img/Stars.png").convert() 
 
 clock = pygame.time.Clock()
 
-vseau = Vaisseau(600,400)
+vseau = Vaisseau(600,400) 
 
 
 screen.blit(fond, (0,0))
 screen.blit(vseau.skin,(vseau.x,vseau.y))
 
 event1= [vseau]
-score = 0
+score = 0 
 
 
 cont = True
