@@ -9,6 +9,12 @@ screen = pygame.display.set_mode((1200,800))
 
 class Vaisseau:
     def __init__(self,x,y,angle = 0,skin = pygame.image.load("img/vseau2.png"),vitesse = 7):
+        """Classe définissant un vaisseau caractérisé par :
+    - sa position x
+    - sa position y
+    - son angle par rapport a sa position de départ
+    - son skin
+    - sa vitesse """
         self.x = x
         self.y = y
         self.angle = angle
@@ -17,46 +23,45 @@ class Vaisseau:
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
         self.level = 0
 
-    def tor(self):
-        if self.rect[1] < 0:
+    def tor(self): # pour que le vaisseau ne sorte jamais du jeu, si il va de gauche a droite et "sors" du jeu par la doite il reapparait par la gauche
+        if self.rect[1] < 0: # pour le cote gauche
             self.rect[1] = 800
-        if self.rect[1] > 800:
+        if self.rect[1] > 800: # pour le cote droit
             self.rect[1] = 0
-        if self.rect[0] < 0:
+        if self.rect[0] < 0: # pour en haut
             self.rect[0] = 1200
-        if self.rect[0] > 1200:
+        if self.rect[0] > 1200:# pour en bas
             self.rect[0] = 0
 
 
 
 
-    def mouvement(self,pressed,screen,event):
-        if pressed[pygame.K_a]:
+    def mouvement(self,pressed,screen,event): # fonction nous permetant de faire bouger le vaisseau en appuyant sur les touches du clavier.
+        if pressed[pygame.K_a]: # on appuis sur a on va a gauche
             self.rect[0] -= self.vitesse
-        
-        if pressed[pygame.K_d]:
+        if pressed[pygame.K_d]:# on appuis sur d on va a droite
             self.rect[0] += self.vitesse
-        if pressed[pygame.K_w]:
+        if pressed[pygame.K_w]:# on appuis sur w on va en haut
             self.rect[1] -= self.vitesse
-        if pressed[pygame.K_s]:
+        if pressed[pygame.K_s]:# on appuis sur s on va en bas
             self.rect[1] += self.vitesse
 
 
     def tire(self,screen,event):
-        xm, ym = pygame.mouse.get_pos()
+        xm, ym = pygame.mouse.get_pos() # la postion de la souris est la direction dans la quelle va partir le laser
 
         tire = Laser(self.rect[0] + 40 , self.rect[1] + 40 )
         screen.blit(tire.skin, self.rect)
         tire.objectif(xm, ym)
-        event.append(tire)
+        event.append(tire) # le tire est executé
         return tire
 
     def update(self,score):
         self.levelmeth(score)
 
     def levelmeth(self,score):
-        if score >= 100 and self.level < 1:
-            self.level = 1
+        if score >= 100 and self.level < 1: # si on a plus de 100 de score et qu'on est pas encore lvl 1
+            self.level = 1 # on passe lvl 1
             self.amelioration()
 
 

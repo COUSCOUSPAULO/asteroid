@@ -30,7 +30,7 @@ while cont:
         if event.type == QUIT:
             cont=False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:
+            if event.button == 1: 
                 laser = vseau.tire(screen,event1)
                 screen.blit(laser.skin,laser.rect)
     for i in event1:
