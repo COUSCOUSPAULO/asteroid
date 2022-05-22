@@ -25,10 +25,10 @@ def checkhitbox(event): # Fonction qu va definir les interactions entre asteroid
             if isinstance(obj,Asteroid) and isinstance(other,Laser): # si un laser touche un asteroide
                 if obj.rect.colliderect(other.rect):
 
-                    try:
+                    try: # si il n'y a pas d'erreur dans le code
                         other.remove(event)
                         obj.remove(event)
-                    except:
+                    except: # si il y a erreur
                         pass
                     score += 60 # + 60 points au score du joueur
 
@@ -36,37 +36,37 @@ def checkhitbox(event): # Fonction qu va definir les interactions entre asteroid
             if isinstance(obj,Asteroidmini) and isinstance(other,Laser): # si un laser touche un petit asteroide
                 if obj.rect.colliderect(other.rect):
 
-                    try:
+                    try:# si il n'y a pas d'erreur dans le code
                         other.remove(event)
                         obj.remove(event)
-                    except:
+                    except:# si il y a erreur
                         pass
                     score += 10 # + 10 points au score du joueur
 
-            if isinstance(obj,Vaisseau) and isinstance(other,Asteroid):
+            if isinstance(obj,Vaisseau) and isinstance(other,Asteroid): # si le vaisseau et un asteroide entre en collision
                 if obj.rect.colliderect(other.rect):
 
 
-                    gameover(screen,score)
+                    gameover(screen,score) # on perd
 
-            if isinstance(obj,Vaisseau) and isinstance(other,Asteroidmini):
+            if isinstance(obj,Vaisseau) and isinstance(other,Asteroidmini):# si le vaisseau et un petit asteroide entre en collision
                 if obj.rect.colliderect(other.rect):
 
                     screen.blit(pygame.image.load("img/laser.png"),(obj.rect))
-                    gameover(screen,score)
+                    gameover(screen,score) # on perd
 
 
-    return score
+    return score # apres avoir perdu le score est return
 
-def drawscore(screen,score,x = 50 ,y = 50):
+def drawscore(screen,score,x = 50 ,y = 50): # fonction d'affichage du score
     image_score = police.render("score: " + str(score),1,(255,255,255))
     screen.blit(image_score,(x,y))
 
 
-def gameover(screen,score):
+def gameover(screen,score): # quand on perd
 
-    image_yl = police2.render("Game Over",1,(255,0,0))
-    screen.blit(image_yl,(400,400))
+    image_yl = police2.render("Game Over",1,(255,0,0)) #ecriture game over
+    screen.blit(image_yl,(400,400)) # affichée (position)
 
     while True:
         for event in pygame.event.get():
