@@ -50,7 +50,7 @@ class Asteroidmini:
     - sa position x
     - sa position y
     - sa vitesse """
-    def __init__(self,x,y,vitesse = 4):
+    def __init__(self,x,y,vitesse = 4): # Methode constructeur
         self.vitesse = vitesse
         self.x = x
         self.y = y
