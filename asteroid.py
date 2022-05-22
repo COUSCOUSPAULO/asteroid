@@ -7,7 +7,11 @@ vitesselist = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,-0.1,-0.2,-0.3,-0.4,-0.5,-0.6,-0.7]
 
 
 class Asteroid:
-    def __init__(self,x,y,vitesse = 4):
+     """Classe définissant un asteroide caractérisé par :
+    - sa position x
+    - sa position y
+    - sa vitesse """
+    def __init__(self,x,y,vitesse = 4): # Methode constructeur
         self.vitesse = vitesse
         self.x = x
         self.y = y
@@ -42,6 +46,10 @@ class Asteroid:
 
 
 class Asteroidmini:
+     """Classe définissant un petit asteroide caractérisé par :
+    - sa position x
+    - sa position y
+    - sa vitesse """
     def __init__(self,x,y,vitesse = 4):
         self.vitesse = vitesse
         self.x = x
