@@ -16,8 +16,8 @@ class Asteroid:
         self.x = x
         self.y = y
         self.skin = pygame.image.load("img/asteroid.png").convert()
-        self.direction_x = vitesselist[random.randrange(0,13)]
-        self.direction_y = vitesselist[random.randrange(0,13)]
+        self.direction_x = vitesselist[random.randrange(0,13)] # vitesse aleatoire dans la direction x
+        self.direction_y = vitesselist[random.randrange(0,13)] # vitesse aleatoire dans la direction y
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
 
 
