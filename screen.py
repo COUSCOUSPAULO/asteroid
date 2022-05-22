@@ -18,7 +18,7 @@ vseau = Vaisseau(600,400)
 screen.blit(fond, (0,0))
 screen.blit(vseau.skin,(vseau.x,vseau.y))
 
-event1= []
+event1= [vseau]
 score = 0
 
 
@@ -35,7 +35,7 @@ while cont:
                 screen.blit(laser.skin,laser.rect)
     for i in event1:
 
-        i.update()
+        i.update(score)
         screen.blit(i.skin, i.rect)
 
     score += checkhitbox(event1)
@@ -44,13 +44,15 @@ while cont:
 
     pressed = pygame.key.get_pressed()
     vseau.mouvement(pressed,screen,event)
-
-    dt = clock.tick(30)
-
     vseau.tor()
 
 
-    screen.blit(vseau.skin,vseau.rect)
+    dt = clock.tick(30)
+
+
+    drawscore(screen,score)
+
+
 
 
     pygame.display.flip()

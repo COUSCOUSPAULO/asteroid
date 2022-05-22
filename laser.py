@@ -7,15 +7,16 @@ screen = pygame.display.set_mode((1200,800))
 
 
 class Laser:
-     """Classe définissant un laser caractérisé par :
-    - sa position x
-    - sa position y
-    - sa vitesse """
-    def __init__(self,x , y , vitesse = 10): # Methode constructeur
+
+    def __init__(self,x , y , vitesse = 10):
+        """Classe définissant un laser caractérisé par :
+            - sa position x
+            - sa position y
+            - sa vitesse """
         self.x = x
         self.y = y
         self.vitesse = vitesse
-        self.skin =  pygame.image.load("img/laser.png").convert()
+        self.skin =  pygame.image.load("img/laser.png")
         self.xrap = 0
         self.yrap = 0
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
@@ -27,12 +28,12 @@ class Laser:
         self.xrap = x1/univect
         self.yrap = y1/univect
 
-    def update(self):
+    def update(self,score):
 
 
         self.rect[0] += self.xrap * self.vitesse
         self.rect[1] += self.yrap * self.vitesse
 
-    def __del__(self,event):
-        del self
+    def remove(self,event):
+        event.remove(self)
 
