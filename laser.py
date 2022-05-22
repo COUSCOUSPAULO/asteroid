@@ -8,7 +8,7 @@ screen = pygame.display.set_mode((1200,800))
 
 class Laser:
 
-    def __init__(self,x , y , vitesse = 10):
+    def __init__(self,x , y , team = 0,vitesse = 10):
         """Classe définissant un laser caractérisé par :
             - sa position x
             - sa position y
@@ -20,6 +20,7 @@ class Laser:
         self.xrap = 0
         self.yrap = 0
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
+        self.team = team
 
     def objectif(self,xm , ym): # Fonction qui va donner la directions de laser
         y1 = ym-self.rect[1]
@@ -28,7 +29,7 @@ class Laser:
         self.xrap = x1/univect
         self.yrap = y1/univect
 
-    def update(self,score):
+    def update(self,score,event):
 
 
         self.rect[0] += self.xrap * self.vitesse

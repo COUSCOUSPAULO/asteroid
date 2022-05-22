@@ -23,7 +23,7 @@ class Asteroid:
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
 
 
-    def update(self,score):
+    def update(self,score,event):
         self.tor()
         self.rect[0] += self.direction_x * self.vitesse
         self.rect[1] += self.direction_y * self.vitesse
@@ -64,7 +64,7 @@ class Asteroidmini:
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
 
 
-    def update(self,score):
+    def update(self,score,event):
         self.tor()
         self.rect[0] += self.direction_x * self.vitesse
         self.rect[1] += self.direction_y * self.vitesse

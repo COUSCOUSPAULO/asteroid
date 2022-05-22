@@ -35,11 +35,11 @@ while cont:
                 screen.blit(laser.skin,laser.rect)
     for i in event1:
 
-        i.update(score)
+        i.update(score,event1)
         screen.blit(i.skin, i.rect)
 
     score += checkhitbox(event1)
-    randomspawn(event1)
+    randomspawn(event1,score)
 
 
     pressed = pygame.key.get_pressed()
@@ -51,7 +51,7 @@ while cont:
 
 
     drawscore(screen,score)
-
+    vseau.drawlife()
 
 
 

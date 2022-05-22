@@ -2,6 +2,8 @@ from math import *
 import pygame
 from laser import *
 from settings import *
+from bonus import *
+
 
 pygame.init()
 
@@ -22,6 +24,7 @@ class Vaisseau:
         self.vitesse = vitesse
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
         self.level = 0
+        self.vie = 3
 
     def tor(self): # pour que le vaisseau ne sorte jamais du jeu, si il va de gauche a droite et "sors" du jeu par la doite il reapparait par la gauche
         if self.rect[1] < 0: # pour le cote gauche
@@ -56,14 +59,31 @@ class Vaisseau:
         event.append(tire) # le tire est executé
         return tire
 
-    def update(self,score):
+    def update(self,score,event):
         self.levelmeth(score)
 
     def levelmeth(self,score):
-        if score >= 100 and self.level < 1: # si on a plus de 100 de score et qu'on est pas encore lvl 1
+        if score >= 1000 and self.level < 1: # si on a plus de 100 de score et qu'on est pas encore lvl 1
             self.level = 1 # on passe lvl 1
             self.amelioration()
-
+        if score >= 5000 and self.level < 2:
+            self.level = 2
+            self.amelioration()
+        if score >= 10000 and self.level < 3:
+            self.level = 3
+            self.amelioration()
+        if score >= 20000 and self.level < 4:
+            self.level = 4
+            self.amelioration()
+        if score >= 40000 and self.level < 5:
+            self.level = 5 # on passe lvl 1
+            self.amelioration()
+        if score >= 100000 and self.level < 6:
+            self.level = 6
+            self.amelioration()
+        if score >= 500000 and self.level < 7:
+            self.level = 7
+            self.amelioration()
 
     def amelioration(self):
         pause = True
@@ -71,17 +91,37 @@ class Vaisseau:
         image_yl = police.render("Level up: 1 amélioration possible", 1, (255, 255, 255))
         screen.blit(image_yl, (40, 40))
 
+
+
+
+
         while pause == True:
             for event in pygame.event.get():
 
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
-                if event.type == pygame.K_c:
-                    pause = False
-                    screen.blit(image_yl, (40, 40))
+            pressed = pygame.key.get_pressed()
+            if pressed[pygame.K_p]:
+                pause = False
+            if pressed[pygame.K_1]:
+                pause = False
+                bonuslife(self)
+            if pressed[pygame.K_2]:
+                pause = False
+                bonusvitesse(self)
 
+            image_bonusvie = police.render("1: + 1 vie",1,(255,255,255))
+            screen.blit(image_bonusvie,(40,100))
+
+            image_bonusvitesse = police.render("2: + 5% de vitesse",1,(255,255,255))
+            screen.blit(image_bonusvitesse,(40,200))
+
+            screen.blit(image_yl, (40, 40))
             
 
 
-            pygame.display.update()
+            pygame.display.flip()
+    def drawlife(self):
+        image_vie = police.render("Vie: " + str(self.vie), 1, (255, 255, 255))
+        screen.blit(image_vie, (1000, 50))
