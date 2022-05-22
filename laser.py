@@ -34,7 +34,16 @@ class Laser:
 
         self.rect[0] += self.xrap * self.vitesse
         self.rect[1] += self.yrap * self.vitesse
-
+        if self.rect[0] < 0 or self.rect[0] > 1200:
+            try:
+                event.remove(self)
+            except:
+                pass
+        if self.rect[1] < 0 or self.rect[1] > 800:
+            try:
+                event.remove(self)
+            except:
+                pass
     def remove(self,event):
         event.remove(self)
 

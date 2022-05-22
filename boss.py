@@ -6,7 +6,7 @@ class Boss:
     def __init__(self):
         self.skin = pygame.image.load("img/boss.png")
         self.rect = self.skin.get_rect(x = 500,y = 50 )
-        self.vie = 50
+        self.vie = 100
 
     def update(self,score,event):
         roll = random.randrange(1,17)
