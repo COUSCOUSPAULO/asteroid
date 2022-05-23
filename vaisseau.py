@@ -76,7 +76,7 @@ class Vaisseau:
             self.level = 4
             self.amelioration()
         if score >= 40000 and self.level < 5:
-            self.level = 5 # on passe lvl 1
+            self.level = 5  # on passe lvl 1
             self.amelioration()
         if score >= 100000 and self.level < 6:
             self.level = 6
