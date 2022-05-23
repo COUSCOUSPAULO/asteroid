@@ -63,27 +63,34 @@ class Vaisseau:
         self.levelmeth(score)
 
     def levelmeth(self,score):
-        if score >= 1000 and self.level < 1: # si on a plus de 100 de score et qu'on est pas encore lvl 1
+        if score >= 1000 and self.level < 1: # si on a plus de 1000 de score et qu'on est pas encore lvl 1
             self.level = 1 # on passe lvl 1
             self.amelioration()
+            self.skin = pygame.image.load("img/vseaulvl1.png")
         if score >= 5000 and self.level < 2:
             self.level = 2
             self.amelioration()
+            self.skin = pygame.image.load("img/vseaulvl2.png")
         if score >= 10000 and self.level < 3:
             self.level = 3
             self.amelioration()
+            self.skin = pygame.image.load("img/vseaulvl3.png")
         if score >= 20000 and self.level < 4:
             self.level = 4
             self.amelioration()
+            self.skin = pygame.image.load("img/vseaulvl4.png")
         if score >= 40000 and self.level < 5:
             self.level = 5  # on passe lvl 1
             self.amelioration()
+            self.skin = pygame.image.load("img/vseaulvl5.png")
         if score >= 100000 and self.level < 6:
             self.level = 6
             self.amelioration()
+            self.skin = pygame.image.load("img/vseaulvl6.png")
         if score >= 500000 and self.level < 7:
             self.level = 7
             self.amelioration()
+            self.skin = pygame.image.load("img/vseaulvl7.png")
 
     def amelioration(self):
         pause = True
