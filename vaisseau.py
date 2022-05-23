@@ -10,7 +10,7 @@ pygame.init()
 screen = pygame.display.set_mode((1200,800))
 
 class Vaisseau:
-    def __init__(self,x,y,angle = 0,skin = pygame.image.load("img/vseau2.png"),vitesse = 7):
+    def __init__(self,x,y,angle = 0,skin = pygame.image.load("img/vseaulvl1.png"),vitesse = 7):
         """Classe définissant un vaisseau caractérisé par :
     - sa position x
     - sa position y
@@ -25,6 +25,7 @@ class Vaisseau:
         self.rect = self.skin.get_rect(x = self.x,y = self.y)
         self.level = 0
         self.vie = 3
+        self.inert = [0,0,0,0]   #0 : gauche 1:haut 2:droite 3: bas
 
     def tor(self): # pour que le vaisseau ne sorte jamais du jeu, si il va de gauche a droite et "sors" du jeu par la doite il reapparait par la gauche
         if self.rect[1] < 0: # pour le cote gauche
@@ -42,12 +43,20 @@ class Vaisseau:
     def mouvement(self,pressed,screen,event): # fonction nous permetant de faire bouger le vaisseau en appuyant sur les touches du clavier.
         if pressed[pygame.K_a]: # on appuis sur a on va a gauche
             self.rect[0] -= self.vitesse
+            self.inert[0] = 30
+            self.inert[1],self.inert[2],self.inert[3] = 0,0,0
         if pressed[pygame.K_d]:# on appuis sur d on va a droite
             self.rect[0] += self.vitesse
+            self.inert[2] = 30
+            self.inert[1], self.inert[0], self.inert[3] = 0, 0, 0
         if pressed[pygame.K_w]:# on appuis sur w on va en haut
             self.rect[1] -= self.vitesse
+            self.inert[1] = 30
+            self.inert[0], self.inert[2], self.inert[3] = 0, 0, 0
         if pressed[pygame.K_s]:# on appuis sur s on va en bas
             self.rect[1] += self.vitesse
+            self.inert[3] = 30
+            self.inert[1], self.inert[2], self.inert[0] = 0, 0, 0
 
 
     def tire(self,screen,event):
@@ -61,6 +70,22 @@ class Vaisseau:
 
     def update(self,score,event):
         self.levelmeth(score)
+        print(self.inert)
+
+        if self.inert[0] > 0:
+            self.rect[0] -= 3
+            self.inert[0] -= 1
+        if self.inert[1] > 0:
+            self.rect[1] -= 3
+            self.inert[1] -= 1
+        if self.inert[2] > 0:
+            self.rect[0] += 3
+            self.inert[2] -= 1
+        if self.inert[3] > 0:
+            self.rect[1] += 3
+            self.inert[3] -= 1
+
+
 
     def levelmeth(self,score):
         if score >= 1000 and self.level < 1: # si on a plus de 1000 de score et qu'on est pas encore lvl 1
