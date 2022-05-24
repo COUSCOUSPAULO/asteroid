@@ -4,11 +4,18 @@ from laser import *
 
 class Boss:
     def __init__(self):
-        self.skin = pygame.image.load("img/boss.png")
-        self.rect = self.skin.get_rect(x = 500,y = 50 )
-        self.vie = 100
+        """Classe définissant un boss caractérisé par :
+    - son skin
+    - s
+    - sa vie """
+        self.skin = pygame.image.load("img/boss.png") # image du boss
+        self.rect = self.skin.get_rect(x = 500,y = 50 ) # hitbox ?
+        self.vie = 100 # vie du boss
 
     def update(self,score,event):
+        """Fonction permetant au boss de tirer prnant en parametres :
+         le score 
+         l'event"""
         roll = random.randrange(1,17)
         if roll == 1:
             tire = Laser(self.rect[0]+100,self.rect[1]+25,team = 1)
