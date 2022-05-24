@@ -40,7 +40,10 @@ class Vaisseau:
 
 
 
-    def mouvement(self,pressed,screen,event): # fonction nous permetant de faire bouger le vaisseau en appuyant sur les touches du clavier.
+    def mouvement(self,pressed,screen,event): 
+        """fonction nous permetant de faire bouger le vaisseau en appuyant sur les touches du clavier prenant en parametres :
+         - touches pressées 
+         - l'ecran"""
         if pressed[pygame.K_a]: # on appuis sur a on va a gauche
             self.rect[0] -= self.vitesse
             self.inert[0] = 30
@@ -88,39 +91,43 @@ class Vaisseau:
 
 
     def levelmeth(self,score):
+        """fonction de lvl up prenant en parametres :
+         - le score du joueur"""
         if score >= 1000 and self.level < 1: # si on a plus de 1000 de score et qu'on est pas encore lvl 1
             self.level = 1 # on passe lvl 1
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl1.png")
+            self.skin = pygame.image.load("img/vseaulvl1.png") # nouveau skin
         if score >= 5000 and self.level < 2:
             self.level = 2
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl2.png")
+            self.skin = pygame.image.load("img/vseaulvl2.png") # nouveau skin
         if score >= 10000 and self.level < 3:
             self.level = 3
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl3.png")
+            self.skin = pygame.image.load("img/vseaulvl3.png") # nouveau skin
         if score >= 20000 and self.level < 4:
             self.level = 4
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl4.png")
+            self.skin = pygame.image.load("img/vseaulvl4.png") # nouveau skin
         if score >= 40000 and self.level < 5:
             self.level = 5  # on passe lvl 1
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl5.png")
+            self.skin = pygame.image.load("img/vseaulvl5.png") # nouveau skin
         if score >= 100000 and self.level < 6:
             self.level = 6
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl6.png")
+            self.skin = pygame.image.load("img/vseaulvl6.png") # nouveau skin
         if score >= 500000 and self.level < 7:
             self.level = 7
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl7.png")
+            self.skin = pygame.image.load("img/vseaulvl7.png") # nouveau skin
 
     def amelioration(self):
-        pause = True
+         """fonction amelioration prenant en parametres :
+         """
+        pause = True # pause lorsqu on choisi l'amelioration
 
-        image_yl = police.render("Level up: 1 amélioration possible", 1, (255, 255, 255))
+        image_yl = police.render("Level up: 1 amélioration possible", 1, (255, 255, 255)) # affichage amelioration
         screen.blit(image_yl, (40, 40))
 
 

@@ -16,9 +16,9 @@ class Boss:
         """Fonction permetant au boss de tirer prnant en parametres :
          le score 
          l'event"""
-        roll = random.randrange(1,17)
-        if roll == 1:
-            tire = Laser(self.rect[0]+100,self.rect[1]+25,team = 1)
+        roll = random.randrange(1,17) # nbre au hazard entre 1 et 17
+        if roll == 1: # si le nbre est 1
+            tire = Laser(self.rect[0]+100,self.rect[1]+25,team = 1) # le boss recoit l'odre de tirer 
             tire.objectif(event[0].rect[0], event[0].rect[1])
-            event.append(tire)
+            event.append(tire) # il tire
 

@@ -7,12 +7,12 @@ from manche import *
 
 pygame.init()
 
-screen = pygame.display.set_mode((1200,800)) 
-fond = pygame.image.load("img/Stars.png").convert() 
+screen = pygame.display.set_mode((1200,800)) # taille de l'ecran
+fond = pygame.image.load("img/Stars.png").convert() # image de fond
 
 clock = pygame.time.Clock()
 
-vseau = Vaisseau(600,400) 
+vseau = Vaisseau(600,400) # endroit de spawn du vaisseau
 
 
 screen.blit(fond, (0,0))
@@ -29,16 +29,16 @@ while cont:
     for event in pygame.event.get():
         if event.type == QUIT:
             cont=False
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN: # si clique droit
             if event.button == 1: 
                 laser = vseau.tire(screen,event1)
-                screen.blit(laser.skin,laser.rect)
+                screen.blit(laser.skin,laser.rect) # vaisseau tire
     for i in event1:
 
-        i.update(score,event1)
+        i.update(score,event1) # update du score
         screen.blit(i.skin, i.rect)
 
-    score += checkhitbox(event1)
+    score += checkhitbox(event1) # score ancient + score de l'evenement qui vient de se produire
     randomspawn(event1,score)
 
 
@@ -47,10 +47,10 @@ while cont:
     vseau.tor()
 
 
-    dt = clock.tick(30)
+    dt = clock.tick(30) # determine le temps
 
 
-    drawscore(screen,score)
+    drawscore(screen,score) # ecran de fin
     vseau.drawlife()
 
 
