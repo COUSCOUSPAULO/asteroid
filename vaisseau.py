@@ -1,4 +1,5 @@
 from math import *
+
 import pygame
 from laser import *
 from settings import *
@@ -75,7 +76,7 @@ class Vaisseau:
         self.levelmeth(score)
         print(self.inert)
 
-        if self.inert[0] > 0:
+        if self.inert[0] > 0:  #Va permettre l'inertie du vaisseau
             self.rect[0] -= 3
             self.inert[0] -= 1
         if self.inert[1] > 0:
@@ -123,9 +124,9 @@ class Vaisseau:
             self.skin = pygame.image.load("img/vseaulvl7.png") # nouveau skin
 
     def amelioration(self):
-         """fonction amelioration prenant en parametres :
-         """
-        pause = True # pause lorsqu on choisi l'amelioration
+        """fonction amelioration prenant en parametres :
+        """
+        pause = True  #pause lorsqu on choisi l'amelioration
 
         image_yl = police.render("Level up: 1 amélioration possible", 1, (255, 255, 255)) # affichage amelioration
         screen.blit(image_yl, (40, 40))
