@@ -6,7 +6,7 @@ pygame.init()
 screen = pygame.display.set_mode((1200,800))
 
 class Vaisseau:
-    def __init__(self,x,y,angle = 0,skin = pygame.image.load("img/vseau2.png").convert(),vitesse = 0.2):
+    def __init__(self,x,y,angle = 0,skin = pygame.image.load("img/vseau.png").convert(),vitesse = 0.2):
         self.x = x
         self.y = y
         self.angle = angle

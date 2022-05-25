@@ -57,6 +57,7 @@ class Vaisseau:
             self.rect[1] += self.vitesse
             self.inert[3] = 30
             self.inert[1], self.inert[2], self.inert[0] = 0, 0, 0
+        
 
 
     def tire(self,screen,event):
@@ -115,7 +116,7 @@ class Vaisseau:
         if score >= 500000 and self.level < 7:
             self.level = 7
             self.amelioration()
-            self.skin = pygame.image.load("img/vseaulvl7.png")
+            self.skin = pygame.image.load("img/vseaulvl7.jpg").convert()
 
     def amelioration(self):
         pause = True

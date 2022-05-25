@@ -43,6 +43,7 @@ while cont:
 
 
     pressed = pygame.key.get_pressed()
+    
     vseau.mouvement(pressed,screen,event)
     vseau.tor()
 
