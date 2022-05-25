@@ -8,14 +8,17 @@ from vaisseau import *
 from boss import *
 from ennemi import *
 
-def randomspawn(event,score): # Fonction qui va faire apparaitre de maniere aleatoire les asteroides
+def randomspawn(event,score): 
+    """Fonction qui va faire apparaitre de maniere aleatoire les asteroides en prenant en para :
+         - score"""
+         # on va pas commenter en detail pour chaque ligne mais le principe est le suivant, chaque tick un nombre est tire au sors de maniere aleaoire entre 150 et 0. chaque mob a un nombre et si le nbre correspond le mob spawn
     if score < 1000:
         n = random.randrange(0, 150)
         if n == 42:
             aste = Asteroid(random.randrange(0, 1200), 4)
             event.append(aste)
     if score >= 1000 and score < 5000:
-        n = random.randrange(0, 150)
+        n = random.randrange(0, 150) 
         if n == 42:
             aste = Asteroid(random.randrange(1, 1150), 0, 5)
             event.append(aste)
@@ -70,7 +73,7 @@ def checkhitbox(event):
                         pass
                     score += 60  # + 60 points au score du joueur
 
-            if isinstance(obj, Asteroidmini) and isinstance(other, Laser):
+            if isinstance(obj, Asteroidmini) and isinstance(other, Laser): # colision laser atreoide petit
                 if obj.rect.colliderect(other.rect):
                     try:
                         other.remove(event)
@@ -78,7 +81,7 @@ def checkhitbox(event):
                     except:
                         pass
                     score += 10  # + 10 points au score du joueur
-            if isinstance(obj, Vaisseau) and isinstance(other, Asteroid):
+            if isinstance(obj, Vaisseau) and isinstance(other, Asteroid): # colision vaisseau asteroide
                 if obj.rect.colliderect(other.rect):
                     obj.vie -= 1
                     if obj.vie <= 0:
@@ -88,7 +91,7 @@ def checkhitbox(event):
                             event.remove(other)
                         except:
                             pass
-            if isinstance(obj, Vaisseau) and isinstance(other, Asteroidmini):
+            if isinstance(obj, Vaisseau) and isinstance(other, Asteroidmini): # colision vaisseau petit asteroide
                 if obj.rect.colliderect(other.rect):
                     obj.vie -= 1
                     if obj.vie <= 0:
@@ -98,7 +101,7 @@ def checkhitbox(event):
                             event.remove(other)
                         except:
                             pass
-            if isinstance(obj, Vaisseau) and isinstance(other, Boss):
+            if isinstance(obj, Vaisseau) and isinstance(other, Boss): # colision vaisseau boss
                 if obj.rect.colliderect(other.rect):
                     obj.vie -= 1
                     if obj.vie <= 0:
@@ -108,7 +111,7 @@ def checkhitbox(event):
                             event.remove(other)
                         except:
                             pass
-            if isinstance(obj, Vaisseau) and isinstance(other, Laser):
+            if isinstance(obj, Vaisseau) and isinstance(other, Laser): # collision vaisseau laser (envoyer par le boss)
                 if obj.rect.colliderect(other.rect) and other.team == 1:
                     obj.vie -= 1
                     if obj.vie <= 0:
@@ -118,18 +121,18 @@ def checkhitbox(event):
                             event.remove(other)
                         except:
                             pass
-            if isinstance(obj, Boss) and isinstance(other, Laser):
+            if isinstance(obj, Boss) and isinstance(other, Laser): # colson laser boss
                 if obj.rect.colliderect(other.rect) and other.team == 0:
                     obj.vie -= 1
                     if obj.vie <= 0:
                         event.remove(obj)
-                        score += 5001
+                        score += 5001 # score +5000
                     else:
                         try:
                             event.remove(other)
                         except:
                             pass
-            if isinstance(obj, Vaisseau) and (isinstance(other, Ennemiver) or isinstance(other, Ennemihor)):
+            if isinstance(obj, Vaisseau) and (isinstance(other, Ennemiver) or isinstance(other, Ennemihor)): # collision vaisseau enemi vertical
                 if obj.rect.colliderect(other.rect):
                     obj.vie -= 1
                     if obj.vie <= 0:
@@ -139,7 +142,7 @@ def checkhitbox(event):
                             event.remove(other)
                         except:
                             pass
-            if (isinstance(obj, Ennemiver) or isinstance(obj, Ennemihor)) and isinstance(other, Laser):
+            if (isinstance(obj, Ennemiver) or isinstance(obj, Ennemihor)) and isinstance(other, Laser):  # collision vaisseau enemi horizontal
                 if obj.rect.colliderect(other.rect) and other.team == 0:
                     try:
                         event.remove(other)
